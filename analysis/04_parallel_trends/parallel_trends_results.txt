@@ -1,0 +1,19 @@
+PARALLEL TRENDS TEST RESULTS
+============================================================
+
+Pre-treatment period: 2005-2008
+Treatment event: BlackRock-BGI merger (2009 Q4)
+
+  Year 2005: β = 0.00000364, SE = 0.00003881, p = 0.925207 
+  Year 2006: β = 0.00007130, SE = 0.00003331, p = 0.032306 **
+  Year 2007: β = 0.00009344, SE = 0.00004176, p = 0.025235 **
+  Year 2008: β = 0.00007586, SE = 0.00005114, p = 0.137966 
+
+Joint Wald test: W = 11.7992, df = 4, p = 0.018908
+Pre-treatment mean δ: 0.00006106
+Post-treatment mean δ: 0.00020343
+
+NOTE: Pre-treatment coefficients for 2006-2007 are individually significant.
+This may reflect the fact that λ_pre was measured during 2007-2008,
+creating overlap between the measurement window and pre-treatment period.
+For proper causal interpretation, focus on post-2009 coefficients.

@@ -1,0 +1,8 @@
+Model,Coef,SE,p,N,R²
+Firm-Level DiD (OLS),0.0731,0.0236,0.002,31959.0,0.024
+Firm-Level DiD (+Exec FE),0.0727,0.0235,0.0022,31959.0,0.023
+Firm-Level Long-Diff,0.096,0.034,0.005,18108.0,0.055
+Firm-Level Binary (null),0.0035,0.012,0.77,31959.0,0.022
+Pair-Level Logit λ_pre,1.546,,0.0,1070174.0,
+Pair-Level Logit Δλ,0.583,,0.0,1070174.0,
+Pair-Level ES (post-2009 mean δ),0.00019226388205095097,,,,

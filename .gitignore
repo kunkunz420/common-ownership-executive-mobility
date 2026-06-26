@@ -1,0 +1,25 @@
+# Data files (too large for git)
+*.parquet
+*.csv
+!analysis/*/event_study_coefficients.csv
+!analysis/*/placebo_results.csv
+!analysis/*/robustness_results.csv
+!analysis/*/regression_summary.csv
+!analysis/*/event_study_table.csv
+!analysis/*/panel_summary.csv
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.bbl
+*.blg
+
+# Python
+__pycache__/
+*.pyc
+.venv/
