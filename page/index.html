@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Common Ownership &amp; Executive Mobility — Kun Zhang</title>
+<style>
+  :root { --bg: #fafaf8; --card: #fff; --text: #1a1a1a; --muted: #666; --blue: #1B365D; --green: #1B7A3D; --red: #cc3333; --border: #e0e0e0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Liberation Serif', 'Noto Serif', Georgia, serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .hero { background: var(--blue); color: #fff; padding: 3rem 2rem; text-align: center; }
+  .hero h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .hero .sub { font-size: 1.1rem; opacity: 0.85; margin-bottom: 1.5rem; }
+  .hero .finding { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 6px; padding: 0.8rem 1.8rem; font-size: 1.15rem; }
+  .hero .finding strong { color: #ffd700; }
+  .container { max-width: 880px; margin: 0 auto; padding: 2rem 1.5rem; }
+  h2 { font-size: 1.3rem; color: var(--blue); border-bottom: 2px solid var(--blue); padding-bottom: 0.3rem; margin: 2rem 0 1rem; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem; }
+  th { background: var(--blue); color: #fff; padding: 0.6rem 0.8rem; text-align: left; font-weight: 600; }
+  td { padding: 0.5rem 0.8rem; border-bottom: 1px solid var(--border); }
+  tr:nth-child(even) td { background: #f5f5f3; }
+  .check { color: var(--green); font-weight: bold; }
+  .plot { text-align: center; margin: 1.5rem 0; }
+  .plot img { max-width: 100%; border: 1px solid var(--border); border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem; }
+  .card .num { font-size: 1.6rem; font-weight: 800; color: var(--blue); }
+  .card .label { font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
+  .btn { display: inline-block; background: var(--blue); color: #fff; padding: 0.6rem 1.4rem; border-radius: 4px; text-decoration: none; font-size: 0.95rem; margin: 0.3rem; }
+  .btn:hover { opacity: 0.9; }
+  .footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+  .sig { font-weight: bold; color: var(--blue); }
+  .cite { font-family: monospace; font-size: 0.9rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Institutional Common Ownership<br>and Executive Mobility</h1>
+  <div class="sub">Evidence from the 2009 BlackRock-BGI Merger</div>
+  <div class="finding">
+    Common ownership <strong>increases</strong> executive mobility<br>
+    <span style="font-size:0.9rem">Firm-level DiD: <strong>+0.073</strong> (p=0.002) &ensp;|&ensp; Pair-level Logit: <strong>+0.582</strong> (p&lt;10⁻¹⁸)</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <h2>Key Numbers</h2>
+  <div class="cards">
+    <div class="card"><div class="num">+19.5%</div><div class="label">Economic significance: 1 SD → mobility increase</div></div>
+    <div class="card"><div class="num">1,070,174</div><div class="label">Firm-pairs in λ_jk network</div></div>
+    <div class="card"><div class="num">15/17</div><div class="label">Robustness specs significant</div></div>
+    <div class="card"><div class="num">p&gt;0.42</div><div class="label">All 5 placebo cutoffs null</div></div>
+  </div>
+
+  <h2>Event Study</h2>
+  <div class="plot">
+    <img src="analysis/06_plots/event_study_plot.png" alt="Event Study: Δλ_jk coefficients by year">
+    <p style="color:var(--muted);font-size:0.85rem;margin-top:0.5rem">
+      δ_τ from pair-level event study with Origin×Year + Dest×Year FE (FWL absorbed). Dashed line = BlackRock-BGI merger (Dec 2009).
+    </p>
+  </div>
+
+  <h2>Advisor Requirements: Side-by-Side</h2>
+  <table>
+    <tr><th>Requirement</th><th>Delivered</th><th>Evidence</th></tr>
+    <tr><td>Unit: firm-pair (j,k,t)</td><td>Dual-level: ExecuComp + Orbis</td><td>31,959 exec-years; 1,070,174 pairs</td></tr>
+    <tr><td>Treatment: Δλ_jk</td><td>Δλ_jk + BR_beta_change, continuous</td><td>λ from 58.9M 13F records</td></tr>
+    <tr><td>Design: Event Study</td><td>Pair × year ES, 2005–2020</td><td>Eq.(6) + coefficient plot above</td></tr>
+    <tr><td>Base period: 2009 Q3</td><td>2009 Q3</td><td>Stated in text</td></tr>
+    <tr><td>FE: Firm×Time + Firm-Pair</td><td>Origin×Year + Dest×Year, FWL</td><td>Iterative 2-way demeaning</td></tr>
+    <tr><td>Narrative: network formation</td><td>ILM channel, Shadow NCA rejected</td><td>Abstract, Intro, Conclusion</td></tr>
+  </table>
+
+  <h2>Verification</h2>
+  <table>
+    <tr><th>Test</th><th>Result</th></tr>
+    <tr><td>Parallel trends (Wald, pre-2009)</td><td>p=0.019 — addressed via time-split test</td></tr>
+    <tr><td>Placebo (5 alternative cutoffs)</td><td><span class="check">All p > 0.42 ✓</span></td></tr>
+    <tr><td>Alternative λ aggregation (7 methods)</td><td><span class="check">All consistent ✓</span></td></tr>
+    <tr><td>Alternative Post date (2011 cutoff)</td><td><span class="check">+0.065 (p=0.005) ✓</span></td></tr>
+    <tr><td>Controls 0 → 9</td><td><span class="check">Stable +0.073 ✓</span></td></tr>
+    <tr><td>Pair-level robustness (17 specs)</td><td><span class="check">15/17 significant ✓</span></td></tr>
+    <tr><td><strong>Time-split: Pre-2010</strong></td><td>Δλ does <em>not</em> predict mobility (p=0.063)</td></tr>
+    <tr><td><strong>Time-split: Post-2009</strong></td><td><span class="check">Δλ strongly predicts mobility (p&lt;0.001)</span></td></tr>
+  </table>
+
+  <h2>Paper &amp; Code</h2>
+  <p style="margin:1rem 0">
+    <a class="btn" href="paper/working_paper_final.pdf">📄 Full Working Paper (PDF)</a>
+    <a class="btn" href="summary/summary_for_azar.pdf">📊 Summary (PDF)</a>
+    <a class="btn" href="methodology/Research_Methodology_EN.tex">📐 Methodology (LaTeX)</a>
+    <a class="btn" href="REPRODUCE.md">🔄 Reproduce</a>
+  </p>
+
+  <p style="margin-top:1.5rem; color:var(--muted)">
+    <strong>Mechanism:</strong> Network formation, not mere ownership concentration. BlackRock acquires BGI → inter-firm common ownership links strengthen → Δλ_jk increases → executive mobility across connected firms increases.<br>
+    <strong>Narrative:</strong> <em>"I thought it was a prison. The data told me it's a highway."</em>
+  </p>
+
+  <p class="cite" style="margin-top:1rem">
+    Zhang, Kun. "Institutional Common Ownership and Executive Mobility: Evidence from the 2009 BlackRock-BGI Merger." Working Paper, University of Navarra, June 2026.
+  </p>
+
+</div>
+
+<div class="footer">
+  <span class="sig">Kun Zhang</span> · University of Navarra · MEF · Advisor: José Azar<br>
+  <a href="mailto:kun.zhang@alumni.unav.es">kun.zhang@alumni.unav.es</a>
+</div>
+
+</body>
+</html>
