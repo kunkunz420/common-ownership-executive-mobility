@@ -29,10 +29,10 @@ We exploit the exogenous shock of BlackRock's acquisition of Barclays Global Inv
 | Database | Content | Time Span | Size |
 |----------|---------|-----------|------|
 | Thomson Reuters 13F | Institutional quarterly holdings | 2007–2008, 2010–2011 | 58,929,118 rows |
-| Compustat | Firm financials | 2005–2015 | — |
+| Compustat | Firm financials & controls | 2005–2015 | 25,874 firms (231,365 firm-year) |
 | ExecuComp | Executive compensation & mobility | 2005–2015 | 244,857 obs (cleaned) |
-| CRSP Stock | Stock prices & returns | 2005–2015 | — |
-| CRSP Names | Firm names & identifiers | — | — |
+| CRSP Stock | Stock prices & returns | 2005–2015 | 1,821,454 monthly rows |
+| CRSP Names | Firm names & identifiers | — | 40,518 PERMNOs |
 | Orbis (BvD) | Director appointments & moves | 2000–2025 | 14,220 firms, 1,417,530 person-role records |
 
 ### 13F Data Limitation
@@ -213,7 +213,7 @@ $$ \text{Move}_{jk,t} = \sum_{\tau} \delta_\tau (\Delta\lambda_{jk} \times \math
 | | **Coefficient** | **p-value** |
 |---|---|---|
 | logit λ_jk^Pre | +1.546 | < 10⁻¹²⁴ |
-| logit Δλ_jk | +0.583 | < 10⁻¹⁸ |
+| logit Δλ_jk | +0.582 | < 10⁻¹⁸ |
 | Marginal effect λ_jk^Pre | +0.0036 | — |
 | Marginal effect Δλ_jk | +0.0014 | — |
 | N (pairs) | 1,070,174 | — |
@@ -271,36 +271,40 @@ BlackRock acquires BGI → Inter-firm common ownership links strengthen → Δλ
 ### Pipeline Structure
 
 ```
-01_build_link_table → 02_clean_13f_MHHI → 03_clean_executive
-     ↓                                                      ↓
-04_merge_panel ←────────────────────────────────────────────┘
+1_data_pipeline/01_build_link_table → 02_clean_13f → 03_clean_executive
+     ↓                                                         ↓
+04_merge_panel ←───────────────────────────────────────────────┘
      ↓
-05_DiD_regression → 06_DDD_RD_donut → 07_PSM_DiD
+2_firm_level/08_directional_mobility_DiD (+0.073***)
      ↓
-08_directional_mobility_DiD (+0.073***)
+2_firm_level/09_long_diff_verify (+0.096***)
      ↓
-09_long_diff_verify (+0.096***)
+1_data_pipeline/10a_build_lambda_jk
      ↓
-lambda_jk_build → orbis_pair_level → event_study (pair-level)
+3_pair_level/build_pair_year_panel → fwl_event_study → baseline_logit
+     ↓
+4_robustness/parallel_trends_placebo → robustness_checks
+     ↓
+5_output/plot_and_summary
 ```
 
 ### Key Scripts
 
-| Phase | Script | Output |
-|-------|--------|--------|
-| 1 | 01_build_link_table.py | 8,150 gvkeys matched |
-| 2 | 02_clean_13f_mhhi.py | 57,888 MHHI observations |
-| 3 | 03_clean_executive.py | 244,857 cleaned executive records |
-| 4 | 04_merge_panel.py | Analysis panel (executive-year) |
-| 5 | 05_did_regression.py | NULL (binary treatment null) |
-| 6 | 06_ddd_rd_donut.py | Placebo failed (pre-trend violation) |
-| 7 | 07_psm_did.py | Placebo fixed but DDD disappeared |
-| 8 | 08_directional_mobility_did.py | **+0.073*** first significance** |
-| 8b | 08b_fixed_fe_did.py | Positive effect confirmed |
-| 9 | 09_long_diff_verify.py | **+0.096*** precise replication** |
-| — | robustness_checks.py | Drop tenure +0.162*** |
-| — | lambda_jk_build.py | λ_jk pair data |
-| — | orbis_pair_level.py | Pair-level logit results |
+| Phase | Script (in `code/`) | Output |
+|-------|---------------------|--------|
+| 1 | `1_data_pipeline/01_build_link_table.py` | 8,150 gvkeys matched |
+| 2 | `1_data_pipeline/02_clean_13f_mhhi.py` | 57,888 MHHI observations |
+| 3 | `1_data_pipeline/03_clean_executive.py` | 244,857 cleaned executive records |
+| 4 | `1_data_pipeline/04_merge_panel.py` | Analysis panel (executive-year) |
+| — | *(Phases 5-7 were exploratory with null results; not in repo)* | |
+| 8 | `2_firm_level/08_directional_mobility_did.py` | **+0.073*** first significance** |
+| 9 | `2_firm_level/09_long_diff_verify.py` | **+0.096*** precise replication** |
+| — | `4_robustness/robustness_checks.py` | Drop tenure +0.162*** |
+| 10a | `1_data_pipeline/10a_build_lambda_jk.py` | λ_jk pair data |
+| — | `3_pair_level/build_pair_year_panel.py` | Pair × year panel |
+| — | `3_pair_level/fwl_event_study.py` | Event study coefficients |
+| — | `3_pair_level/baseline_logit.py` | **+0.582*** pair-level logit** |
+| — | `3_pair_level/reset_test.py` | RESET / Link tests |
 
 ---
 

@@ -21,6 +21,8 @@ MHHI_DELTA_CSV = OUTPUT / "mhhi_delta.csv"
 EXEC_CLEAN_CSV = OUTPUT / "exec_clean.csv"
 PANEL_CSV = OUTPUT / "analysis_panel.csv"
 PANEL_DTA = OUTPUT / "analysis_panel.dta"
+BETA_CSV = OUTPUT / "beta_aggregated.csv"
+LAMBDA_DIR = OUTPUT / "lambda_jk"
 
 # ── Time parameters ───────────────────────────────────────────
 MERGER_YEAR = 2009

@@ -14,10 +14,8 @@ import pandas as pd
 from pathlib import Path
 from scipy import sparse
 
-DATA_ROOT = Path("/home/kun/Documents/沃顿数据")
-OUTPUT = DATA_ROOT / "数据和清洗" / "data_clean" / "output"
-BETA_CSV = OUTPUT / "beta_aggregated.csv"
-PANEL_CSV = OUTPUT / "analysis_panel.csv"
+from lib.config import OUTPUT, PANEL_CSV, BETA_CSV, LOGS
+
 LAMBDA_DIR = OUTPUT / "lambda_jk"
 LAMBDA_DIR.mkdir(exist_ok=True)
 
