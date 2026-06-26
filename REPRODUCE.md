@@ -159,8 +159,8 @@ pair_year_panel ────────┤
 |--------|------|
 | Thomson Reuters 13F | 58,929,118 条 |
 | ExecuComp | 244,857 条 |
-| Compustat | — |
-| CRSP | — |
+| Compustat | 25,874 企业 (231,365 行 firm-year) |
+| CRSP Stock / Names | 1,821,454 行月度数据 + 40,518 个 PERMNO |
 | Orbis (BvD) | 14,220 企业，1,417,530 条 person-role |
 
 **注意：** 原始数据文件受许可限制，不在本仓库中。联系作者获取数据访问方式。
