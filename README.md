@@ -8,10 +8,10 @@
 ## What I Updated (Per Your Feedback)
 
 | Your Requirement | Implementation |
-|---|---|
-| Unit of analysis: firm-pair (j,k,t) | 1,070,174 pairs from Orbis |
-| Treatment variable: Δλ_jk | Built from 58.9M 13F records, base period 2009 Q3 |
-| Design: event study with δ_τ | Pair × year, 2005–2020 |
+|---|---|---|
+| Unit of analysis: firm-pair (`j,k,t`) | 1,070,174 pairs from Orbis |
+| Treatment variable: `Δλ`~jk~ | Built from 58.9M 13F records, base period 2009 Q3 |
+| Design: event study with `δ`~τ~ | Pair × year, 2005–2020 |
 | FE: Origin×Year + Dest×Year | FWL-absorbed, Gauss-Seidel iteration |
 | Narrative: network formation | ILM channel confirmed, Shadow NCA rejected |
 
@@ -22,14 +22,14 @@
 Common ownership **increases** C-suite executive mobility.
 
 | Specification | Coefficient | *p*-value | *N* |
-|---|---|---|---|
-| Firm-level DiD (BR_Δ × Post) | +0.073 | 0.002 | 31,959 |
+|---|---|---|---|---|
+| Firm-level DiD (BR`Δ` × Post) | +0.073 | 0.002 | 31,959 |
 | Long-difference | +0.096 | 0.005 | 18,108 |
-| Pair-level Logit (Δλ_jk) | +0.582 | < 10⁻¹⁸ | 1,070,174 |
+| Pair-level Logit (`Δλ`~jk~) | +0.582 | < 10⁻¹⁸ | 1,070,174 |
 | Post-2009 time split | +0.0017 | < 0.001 | — |
 | Pre-2010 time split | +0.0001 | 0.063 | — |
 
-1 SD increase in BR_Δ → +0.93 pp (+19.5% of mean mobility rate)
+1 SD increase in BR`Δ` → +0.93 pp (+19.5% of mean mobility rate)
 
 ---
 

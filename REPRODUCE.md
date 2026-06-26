@@ -19,18 +19,18 @@ System RAM ≥ 16 GB
 Constructs the λ_jk common ownership measure and the main analysis panel.
 
 ```bash
-# Run in order:
-python3 01_build_link_table.py          # gvkey crosswalk table
-python3 02_clean_13f_mhhi.py            # 13F data cleaning
-python3 03_clean_executive.py           # ExecuComp cleaning
-python3 04_merge_panel.py               # Panel merge
-python3 10a_build_lambda_jk.py          # Build λ_jk (core step)
-python3 08_directional_mobility_did.py  # Firm-level DiD
-python3 09_long_diff_verify.py          # Long-difference verification
-python3 robustness_checks.py            # Robustness checks
+# Run in order from code/:
+python3 code/1_data_pipeline/01_build_link_table.py          # gvkey crosswalk table
+python3 code/1_data_pipeline/02_clean_13f_mhhi.py            # 13F data cleaning
+python3 code/1_data_pipeline/03_clean_executive.py           # ExecuComp cleaning
+python3 code/1_data_pipeline/04_merge_panel.py               # Panel merge
+python3 code/1_data_pipeline/10a_build_lambda_jk.py          # Build λ_jk (core step)
+python3 code/2_firm_level/08_directional_mobility_did.py     # Firm-level DiD
+python3 code/2_firm_level/09_long_diff_verify.py             # Long-difference verification
+python3 code/4_robustness/robustness_checks.py               # Firm-level robustness
 ```
 
-Output directory: `wharton_data/data_clean/output/`
+Output directory: `wharton_data/data_clean/output/` (requires WRDS access)
 
 ---
 
@@ -39,7 +39,7 @@ Output directory: `wharton_data/data_clean/output/`
 ### 2.1 Build Pair × Year Panel
 
 ```bash
-python3 analysis/01_pair_panel/build_pair_year_panel.py
+python3 code/3_pair_level/build_pair_year_panel.py
 ```
 
 **Inputs:** `orbis_moves_with_lambda.parquet`, `lambda_delta.parquet`  
@@ -54,7 +54,7 @@ Steps:
 ### 2.2 FWL Absorption + Event Study
 
 ```bash
-python3 analysis/02_fwl/fwl_event_study.py
+python3 code/3_pair_level/fwl_event_study.py
 ```
 
 Methodology:
@@ -68,7 +68,7 @@ Methodology:
 ### 2.3 Parallel Trends + Placebo Tests
 
 ```bash
-python3 analysis/04_parallel_trends/parallel_trends_placebo.py
+python3 code/4_robustness/parallel_trends_placebo.py
 ```
 
 - **Parallel trends:** Joint Wald test, H₀: δ₂₀₀₅ = δ₂₀₀₆ = δ₂₀₀₇ = δ₂₀₀₈ = 0
@@ -77,7 +77,7 @@ python3 analysis/04_parallel_trends/parallel_trends_placebo.py
 ### 2.4 Baseline Logit
 
 ```bash
-python3 analysis/08_logit/baseline_logit.py
+python3 code/3_pair_level/baseline_logit.py
 ```
 
 Cross-sectional logit: `AnyMove_jk ~ delta_lambda + lambda_jk_pre`
@@ -85,7 +85,7 @@ Cross-sectional logit: `AnyMove_jk ~ delta_lambda + lambda_jk_pre`
 ### 2.5 RESET Specification Tests
 
 ```bash
-python3 analysis/09_reset/reset_test.py
+python3 code/3_pair_level/reset_test.py
 ```
 
 - RESET test (OLS specification check)
@@ -94,7 +94,7 @@ python3 analysis/09_reset/reset_test.py
 ### 2.6 Robustness Checks
 
 ```bash
-python3 analysis/10_robustness/robustness_checks.py
+python3 code/4_robustness/robustness_checks.py
 ```
 
 17 checks: winsorization, positive/negative Δλ subsamples, quartile splits, λ_pre > 0 restriction, clustered standard errors, time splits, outlier exclusion, and others.
@@ -102,7 +102,7 @@ python3 analysis/10_robustness/robustness_checks.py
 ### 2.7 Visualization
 
 ```bash
-python3 analysis/06_plots/plot_and_summary.py
+python3 code/5_output/plot_and_summary.py
 ```
 
 Produces the event-study coefficient plot (δ_τ vs. year with 95% CI), with a 2009 reference line.
@@ -112,22 +112,22 @@ Produces the event-study coefficient plot (δ_τ vs. year with 95% CI), with a 2
 ## File Dependency Map
 
 ```
-01_build_link_table.py ──▶ 02_clean_13f ──▶ 10a_build_lambda_jk ──▶ lambda_delta.parquet
-                                                                              │
-03_clean_executive.py ──▶ 04_merge_panel ──▶ 08_directional_mobility ───────┘
-                                              09_long_diff_verify
-                                              robustness_checks
+code/1_data_pipeline/01_build_link_table.py ──▶ 02_clean_13f ──▶ 10a_build_lambda_jk ──▶ lambda_delta.parquet
+                                                                                              │
+code/1_data_pipeline/03_clean_executive.py ──▶ 04_merge_panel ──▶ code/2_firm_level/08_directional_mobility ──┘
+                                                                 code/2_firm_level/09_long_diff_verify
+                                                                 code/4_robustness/robustness_checks
 
 lambda_delta.parquet ───┐
 orbis_moves.parquet ────┤
-                         ├──▶ 01_pair_panel ──▶ pair_year_panel.parquet
+                         ├──▶ code/3_pair_level/build_pair_year_panel ──▶ pair_year_panel.parquet
                          │
 pair_year_panel ─────────┤
-                         ├──▶ 02_fwl ──▶ 03_event_study
-                         ├──▶ 04_parallel_trends + 05_placebo
-                         ├──▶ 08_logit
-                         ├──▶ 09_reset
-                         └──▶ 10_robustness ──▶ 06_plots ──▶ 07_tables
+                         ├──▶ code/3_pair_level/fwl_event_study ──▶ event_study
+                         ├──▶ code/4_robustness/parallel_trends_placebo
+                         ├──▶ code/3_pair_level/baseline_logit
+                         ├──▶ code/3_pair_level/reset_test
+                         └──▶ code/4_robustness/robustness_checks ──▶ code/5_output/plot_and_summary
 ```
 
 ---
