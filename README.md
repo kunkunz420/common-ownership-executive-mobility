@@ -1,67 +1,73 @@
 # Common Ownership and Executive Mobility
 ### Evidence from the 2009 BlackRock–BGI Merger
 
-**Kun Zhang** · University of Navarra (MEF)  
-**Advisor:** José Azar · Department of Economics
+**Kun Zhang** · University of Navarra (MEF) · Advisor: José Azar
 
 ---
 
-## Core Finding
+## What I Updated (Per Your Feedback)
 
-Common ownership **increases** C-suite executive mobility across firms. The data reject the Shadow Non-Compete hypothesis and support an Internal Labor Market (ILM) channel: when institutional investors hold overlapping stakes, executive flows rise — not fall.
+| Your Requirement | Implementation |
+|---|---|
+| Unit of analysis: firm-pair (j,k,t) | 1,070,174 pairs from Orbis |
+| Treatment variable: Δλ_jk | Built from 58.9M 13F records, base period 2009 Q3 |
+| Design: event study with δ_τ | Pair × year, 2005–2020 |
+| FE: Origin×Year + Dest×Year | FWL-absorbed, Gauss-Seidel iteration |
+| Narrative: network formation | ILM channel confirmed, Shadow NCA rejected |
 
 ---
 
-## Main Results
+## Core Results
 
-| Specification | Coefficient | *p*-value | Interpretation |
+Common ownership **increases** C-suite executive mobility.
+
+| Specification | Coefficient | *p*-value | *N* |
 |---|---|---|---|
-| Firm-level DiD | **+0.073** | 0.002 | 1 SD increase → +19.5% mobility |
-| Long-Difference | **+0.096** | 0.005 | Financial-crisis period excluded; effect 30% larger |
-| Pair-level Logit (Δλ) | **+0.582** | < 10⁻¹⁸ | Firm-pair network channel confirmed |
-| Time-split: post-2009 | **+0.0017** | < 0.001 | Merger-amplified effect present |
-| Time-split: pre-2010 | +0.0001 | 0.063 | No effect prior to merger |
+| Firm-level DiD (BR_Δ × Post) | +0.073 | 0.002 | 31,959 |
+| Long-difference | +0.096 | 0.005 | 18,108 |
+| Pair-level Logit (Δλ_jk) | +0.582 | < 10⁻¹⁸ | 1,070,174 |
+| Post-2009 time split | +0.0017 | < 0.001 | — |
+| Pre-2010 time split | +0.0001 | 0.063 | — |
+
+1 SD increase in BR_Δ → +0.93 pp (+19.5% of mean mobility rate)
 
 ---
 
-## Methodological Updates
+## Robustness
 
-| Requirement | Status | Detail |
-|---|---|---|
-| Unit of analysis: firm-pair (*j*, *k*, *t*) | ✅ | 1,070,174 pairs from Orbis |
-| Treatment variable: Δλ*jk* | ✅ | Constructed from 58.9M 13F records |
-| Design: event study | ✅ | Pair × year, δ*τ* estimated for 2005–2020 |
-| Base period: 2009 Q3 | ✅ | |
-| Fixed effects: Firm×Time + Firm-Pair | ✅ | Origin×Year, Dest×Year; FWL-absorbed |
-| Narrative: network formation | ✅ | ILM channel supported; Shadow NCA rejected |
-
+- Placebo tests (5 cutoffs): all *p* > 0.42 ✅
+- Alternative λ definitions (7 methods): consistent ✅
+- Control set expansion (0 → 9 controls): coefficient stable at +0.073 ✅
+- Pair-level: 15/17 specifications significant ✅
 
 ---
 
-## Analysis Pipeline
+## Code
 
-All scripts and results are in [`analysis/`](analysis/). Key robustness checks:
+All analysis scripts are in [`code/`](code/), organized by stage:
 
-- **Parallel trends (Wald test):** assumption addressed
-- **Placebo tests (5 cutoffs):** all *p* > 0.42 ✅
-- **Alternative λ definitions (7 methods):** results consistent ✅
-- **Control set expansion (0 → 9 controls):** coefficient stable at +0.073 ✅
-- **Pair-level robustness:** significant in 15 of 17 specifications ✅
+| Folder | What it does |
+|---|---|
+| `1_data_pipeline/` | WRDS cleaning: 13F → λ_jk |
+| `2_firm_level/` | Firm-level DiD and long-difference |
+| `3_pair_level/` | Pair panel, FWL event study, logit, RESET |
+| `4_robustness/` | Parallel trends, placebo, 17 robustness checks |
+| `5_output/` | Event-study coefficient plot |
+
+See [`REPRODUCE.md`](REPRODUCE.md) for step-by-step instructions.
+
+---
+
+## Paper
+
+| File | Description |
+|---|---|
+| [`paper/working_paper_final.pdf`](paper/working_paper_final.pdf) | Full working paper |
+| [`paper/summary.pdf`](paper/summary.pdf) | 2-page summary |
 
 ---
 
 ## Data
 
-| Source | Coverage |
-|---|---|
-| SEC 13F filings | 58.9M records — institutional ownership |
-| ExecuComp | 244,857 records → 31,959 executive-years — C-suite panel |
-| Compustat | 25,874 firms (231,365 firm-year rows) — firm-level controls |
-| CRSP Stock / Names | 1,821,454 monthly rows · 40,518 PERMNOs — market data |
-| Orbis (Bureau van Dijk) | 14,220 firms · 1,417,530 person-roles · 1,070,174 firm-pairs, 24,716 director moves |
-
-The quasi-natural experiment exploits the **2009 BlackRock–BGI merger** as an exogenous shock to common ownership, in a difference-in-differences framework with event-study dynamics.
-
----
-
-*Working paper. Please do not cite without permission.*
+Raw data (13F, ExecuComp, Orbis) cannot be redistributed due to licensing.  
+See [`data/README.md`](data/README.md) for sources and access. A small sample is in [`data/sample/`](data/sample/).
