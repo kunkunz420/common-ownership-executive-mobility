@@ -153,3 +153,5 @@ pair_year_panel ─────────┤
 | Compustat | 25,874 firms (231,365 firm-year observations) |
 | CRSP Stock / Names | 1,821,454 monthly observations · 40,518 PERMNOs |
 | Orbis (Bureau van Dijk) | 14,220 firms · 1,417,530 person-role records |
+
+**Note:** Raw data files are under license and not included in this repository. Contact the author for data access.

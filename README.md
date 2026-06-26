@@ -42,7 +42,7 @@ Common ownership **increases** C-suite executive mobility across firms. The data
 | File | Description |
 |---|---|
 | [`paper/working_paper_final.pdf`](paper/working_paper_final.pdf) | Complete working paper |
-| [`summary/summary_for_azar.pdf`](summary/summary_for_azar.pdf) | 2-page side-by-side comparison |
+| [`summary/paper_summary.pdf`](summary/paper_summary.pdf) | 2-page side-by-side comparison |
 | [`methodology/Research_Methodology_EN.tex`](methodology/Research_Methodology_EN.tex) | Full research design document |
 | [`REPRODUCE.md`](REPRODUCE.md) | Step-by-step replication guide |
 
@@ -65,8 +65,10 @@ All scripts and results are in [`analysis/`](analysis/). Key robustness checks:
 | Source | Coverage |
 |---|---|
 | SEC 13F filings | 58.9M records — institutional ownership |
-| ExecuComp | 31,959 executive-years — C-suite panel |
-| Orbis (Bureau van Dijk) | 1,070,174 firm-pairs, 24,716 director moves |
+| ExecuComp | 244,857 records → 31,959 executive-years — C-suite panel |
+| Compustat | 25,874 firms (231,365 firm-year rows) — firm-level controls |
+| CRSP Stock / Names | 1,821,454 monthly rows · 40,518 PERMNOs — market data |
+| Orbis (Bureau van Dijk) | 14,220 firms · 1,417,530 person-roles · 1,070,174 firm-pairs, 24,716 director moves |
 
 The quasi-natural experiment exploits the **2009 BlackRock–BGI merger** as an exogenous shock to common ownership, in a difference-in-differences framework with event-study dynamics.
 
