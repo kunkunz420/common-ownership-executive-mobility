@@ -42,6 +42,12 @@ Common ownership **increases** C-suite executive mobility.
 
 ---
 
+## Methodology
+
+See [`methodology.md`](methodology.md) for full research design: variable construction, identification strategy, event study specification, fixed effects, and pipeline details.
+
+---
+
 ## Code
 
 All analysis scripts are in [`code/`](code/), organized by stage:
