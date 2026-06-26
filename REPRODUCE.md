@@ -1,6 +1,6 @@
 # 完整复现指南
 
-> 本文档面向研究者或 AI Agent，提供从原始数据到最终论文的全链路复现步骤。
+> 本文档可以使得复现我的完整的工作流程。
 
 ---
 
@@ -9,7 +9,7 @@
 ```bash
 Python 3.12+
 pip install pandas numpy statsmodels matplotlib pyarrow scipy
-系统内存 ≥ 8 GB
+系统内存 ≥ 16 GB
 ```
 
 ---
