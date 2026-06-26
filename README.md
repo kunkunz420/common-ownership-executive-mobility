@@ -26,8 +26,8 @@ Common ownership **increases** C-suite executive mobility.
 | Firm-level DiD (BRΔ x Post) | +0.073 | 0.002 | 31,959 |
 | Long-difference | +0.096 | 0.005 | 18,108 |
 | Pair-level Logit (Δλ) | +0.582 | < 10⁻¹⁸ | 1,070,174 |
-| Post-2009 time split | +0.0017 | < 0.001 | — |
-| Pre-2010 time split | +0.0001 | 0.063 | — |
+| Post-2009 time split | +0.0017 | < 0.001 | 1,070,174 |
+| Pre-2010 time split | +0.0001 | 0.063 | 1,070,174 |
 
 1 SD increase in BRΔ → +0.93 pp (+19.5% of mean mobility rate)
 
