@@ -2,13 +2,12 @@
 
 **Evidence from the 2009 BlackRock-BGI Merger**
 
-[Kun Zhang] University of Navarra Advisor:  José Azar
-
-🌐 [**View Project Page**](https://kunkunz420.github.io/common-ownership-executive-mobility/) — visual summary with Event Study plot
+Kun Zhang · University of Navarra
+Advisor:  José Azar
 
 ---
 
-### Core Finding
+### Core Finding：
 
 > Common ownership **increases** C-suite executive mobility. The data reject the Shadow Non-Compete hypothesis and support an Internal Labor Market channel.
 
@@ -20,7 +19,7 @@
 | Time-split: Post-2009 | **+0.0017** | <0.001 | Merger-amplified effect |
 | Time-split: Pre-2010 | +0.0001 | 0.063 | No effect before merger |
 
-### What José Asked For → What Was Delivered
+### What I updated: 
 
 | Requirement | Status |
 |---|---|
@@ -31,16 +30,16 @@
 | FE: Firm×Time + Firm-Pair | ✓ Origin×Year + Dest×Year, FWL absorbed |
 | Narrative: network formation | ✓ ILM channel, Shadow NCA rejected |
 
-### 📄 Documents
+### Documents：
 
-| File | Description |
-|---|---|
-| [**Full Paper (PDF)**](paper/working_paper_final.pdf) | Complete working paper |
-| [**Summary (PDF)**](summary/summary_for_azar.pdf) | 2-page side-by-side comparison |
-| [**Methodology**](methodology/Research_Methodology_EN.tex) | Research design document |
-| [**Reproduction Guide**](REPRODUCE.md) | Step-by-step replication |
+| File                                                       | Description                    |
+| ---------------------------------------------------------- | ------------------------------ |
+| [**Full Paper (PDF)**](paper/working_paper_final.pdf)      | Complete working paper         |
+| [**Summary (PDF)**](summary/summary_for_azar.pdf)          | 2-page side-by-side comparison |
+| [**Methodology**](methodology/Research_Methodology_EN.tex) | Research design document       |
+| [**Reproduction Guide**](REPRODUCE.md)                     | Step-by-step replication       |
 
-### 📊 Analysis Pipeline (10 Steps)
+###  Analysis Pipeline:
 
 All scripts and results in [`analysis/`](analysis/). Key verification:
 
@@ -50,6 +49,6 @@ All scripts and results in [`analysis/`](analysis/). Key verification:
 - Controls 0→9: stable +0.073 ✓
 - Pair-level robustness: 15/17 specs significant ✓
 
-### Data
+### About Data:
 
 58.9M 13F records · 31,959 exec-years (ExecuComp) · 1.07M firm-pairs · 24,716 director moves (Orbis)
