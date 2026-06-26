@@ -35,16 +35,6 @@ Common ownership **increases** C-suite executive mobility across firms. The data
 | Fixed effects: Firm×Time + Firm-Pair | ✅ | Origin×Year, Dest×Year; FWL-absorbed |
 | Narrative: network formation | ✅ | ILM channel supported; Shadow NCA rejected |
 
----
-
-## Documents
-
-| File | Description |
-|---|---|
-| [`paper/working_paper_final.pdf`](paper/working_paper_final.pdf) | Complete working paper |
-| [`summary/paper_summary.pdf`](summary/paper_summary.pdf) | 2-page side-by-side comparison |
-| [`methodology/Research_Methodology_EN.tex`](methodology/Research_Methodology_EN.tex) | Full research design document |
-| [`REPRODUCE.md`](REPRODUCE.md) | Step-by-step replication guide |
 
 ---
 
