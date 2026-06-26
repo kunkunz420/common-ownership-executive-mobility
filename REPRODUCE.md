@@ -109,14 +109,10 @@ python3 analysis/06_plots/plot_and_summary.py
 
 ---
 
-## 第三步：编译论文
 
-```bash
-# 使用 tectonic（单文件 LaTeX 引擎）
-tectonic paper/working_paper_final.tex --outdir=paper/
-```
 
----
+
+
 
 ## 文件依赖关系
 
@@ -163,4 +159,3 @@ pair_year_panel ────────┤
 | CRSP Stock / Names | 1,821,454 行月度数据 + 40,518 个 PERMNO |
 | Orbis (BvD) | 14,220 企业，1,417,530 条 person-role |
 
-**注意：** 原始数据文件受许可限制，不在本仓库中。联系作者获取数据访问方式。
