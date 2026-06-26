@@ -1,0 +1,19 @@
+# Data files (too large for git)
+*.parquet
+*.csv
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.toc
+*.out
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.bbl
+*.blg
+
+# Python
+__pycache__/
+*.pyc
+.venv/
