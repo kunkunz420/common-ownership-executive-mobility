@@ -42,6 +42,16 @@ Common ownership **increases** C-suite executive mobility.
 
 ---
 
+## Web Overview
+
+An interactive visual summary of the entire project — research design, pipeline, event study plot, results, and data sources — is available at:
+
+> **[kunkunz420.github.io/common-ownership-workflow](https://kunkunz420.github.io/common-ownership-workflow/)**
+
+Features: Smartisan font, dark/light theme toggle, live Canvas charts (δ coefficients with 95% CI), macOS-style sidebar navigation.
+
+---
+
 ## Methodology
 
 Full research design — variable construction, identification strategy, event study
