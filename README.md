@@ -48,7 +48,6 @@ Full research design — variable construction, identification strategy, event s
 specification, fixed effects, and pipeline details:
 - [`methodology.md`](methodology.md) (Markdown, view in browser)
 - [`paper/Research_Methodology_EN.pdf`](paper/Research_Methodology_EN.pdf) (PDF)
-- [`paper/Research_Methodology_EN.tex`](paper/Research_Methodology_EN.tex) (LaTeX)
 
 ---
 
