@@ -4,6 +4,8 @@
 
 [Kun Zhang](mailto:kun.zhang@alumni.unav.es) · University of Navarra · Advisor: José Azar
 
+🌐 [**View Project Page**](https://kunkunz420.github.io/common-ownership-executive-mobility/) — visual summary with Event Study plot
+
 ---
 
 ### Core Finding
